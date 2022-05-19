@@ -1,0 +1,13 @@
+{% extends 'admin/base.html' %}
+{% load static %}
+{% block branding %}
+{% block extrastyle %}
+  <link rel='stylesheet' href='{% static 'css/admin.css' %}'>
+{% endblock %}
+
+<h1 = 'head'>
+
+<img src="{% static 'image/logotab3lia.png' %}" alt="  " class="brand_img" height="80" width="80">
+Tbe3lia Administration
+  </h1>
+{% endblock %}
