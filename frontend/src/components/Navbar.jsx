@@ -48,7 +48,7 @@ function Navbar() {
          
 
           <Button >
-          <a href="/login" >Mon compte</a>
+          <a href="/login" >Login</a>
           </Button>
           
         </ul>
