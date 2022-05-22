@@ -14,6 +14,7 @@ urlpatterns = [
     path('Products/',views.getTopProducts,name='Products '),
     
     path('Product/<str:pk>/',views.getProduct,name='Product '),
+    path('Product/Category/<str:pk>/',views.getProductByCategory,name='ProductCategor '),
     
     
 ]

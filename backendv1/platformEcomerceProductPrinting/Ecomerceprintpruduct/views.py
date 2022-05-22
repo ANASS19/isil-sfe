@@ -103,7 +103,13 @@ def getProduct(request, pk):
 
 
 
-
+@api_view(['GET'])
+def getProductByCategory(request, pk):
+    category=Product.objects.get()
+    # productcatygory = Product.objects.get(name=pk)
+    print(category.name)
+    # serializer = ProductSerializer(Category, many=False)
+    # return Response(serializer.data)
 
 
 
