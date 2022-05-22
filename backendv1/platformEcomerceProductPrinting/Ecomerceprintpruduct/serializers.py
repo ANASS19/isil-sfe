@@ -80,7 +80,7 @@ class ProductSerializer(serializers.ModelSerializer):
     
     user = serializers.SerializerMethodField(read_only=True)
     size = serializers.SerializerMethodField(read_only=True)
-    category = serializers.SerializerMethodField(read_only=True)
+    # category = serializers.SerializerMethodField(read_only=True)
     color = serializers.SerializerMethodField(read_only=True)
     
     class Meta:
@@ -93,10 +93,10 @@ class ProductSerializer(serializers.ModelSerializer):
         return serializer.data
 
     
-    def get_category(self, obj):
-        category = obj.category
-        serializer = CategorySerializer(category, many=True)
-        return serializer.data
+    # def get_category(self, obj):
+    #     category = obj.category
+    #     serializer = CategorySerializer(category, many=True)
+    #     return serializer.data
     
     def get_size(self, obj):
         size = obj.size

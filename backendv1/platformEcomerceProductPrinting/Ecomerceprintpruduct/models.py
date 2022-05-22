@@ -61,21 +61,21 @@ class Serviceapi(models.Model):
 #     pass
 
 
-class Category(models.Model):
-    x=[
-        ('T-chirt','T-chirt'),
-        ('Hodie','Hodie'),
-        ('gacket','gacket')
+# class Category(models.Model):
+#     x=[
+#         ('T-chirt','T-chirt'),
+#         ('Hodie','Hodie'),
+#         ('gacket','gacket')
 
-    ]
-    name = models.CharField(max_length=50,choices=x)
+#     ]
+#     name = models.CharField(max_length=50,choices=x)
   
-    # @staticmethod
-    # def get_all_categories():
-    #     return Category.objects.all()
+#     # @staticmethod
+#     # def get_all_categories():
+#     #     return Category.objects.all()
   
-    def __str__(self):
-        return self.name
+#     def __str__(self):
+#         return self.name
 
 
 class Color(models.Model):
@@ -103,11 +103,17 @@ class Size(models.Model):
 
 
 class Product(models.Model):
+    ca=[
+        ('T-chirt','T-chirt'),
+        ('Hodie','Hodie'),
+        ('gacket','gacket')
+    ]
+
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200,null=True,blank=True)
     image = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
     brand = models.CharField(max_length=200,null=True,blank=True)
-    category = models.ManyToManyField(Category, related_name='categoryy',  blank=True, null=True)
+    category = models.CharField(max_length=200,null=True,blank=True,choices=ca)
     size=models.ManyToManyField(Size, related_name='sizee',  blank=True,null=True)
     color=models.ManyToManyField(Color , related_name='colorr',  blank=True, null=True)
     description = models.TextField(null=True,blank=True)
