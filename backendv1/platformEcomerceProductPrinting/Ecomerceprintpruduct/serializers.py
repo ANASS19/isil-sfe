@@ -43,7 +43,66 @@ class UserSerializerWithToken(UserSerializer):
         return str(token.access_token)
 
 
-# class ProductSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Product
-#         fields = '__all__'
+
+
+
+
+
+
+class CategorySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Category
+        fields = '__all__'
+
+
+class SizeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Size
+        fields = '__all__'
+
+class ColorSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Color
+        fields = '__all__'
+
+
+
+
+
+    # def get_sizee(self, obj):
+    #     sizee= obj.sizee_set.all()
+    #     serializer = SizeSerializer(sizee, many=True)
+    #     return serializer.data
+
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    
+    user = serializers.SerializerMethodField(read_only=True)
+    size = serializers.SerializerMethodField(read_only=True)
+    category = serializers.SerializerMethodField(read_only=True)
+    color = serializers.SerializerMethodField(read_only=True)
+    
+    class Meta:
+        model = Product
+        fields = '__all__'
+
+    def get_user(self, obj):
+        user = obj.user
+        serializer = UserSerializer(user, many=False)
+        return serializer.data
+
+    
+    def get_category(self, obj):
+        category = obj.category
+        serializer = CategorySerializer(category, many=True)
+        return serializer.data
+    
+    def get_size(self, obj):
+        size = obj.size
+        serializer = SizeSerializer(size, many=True)
+        return serializer.data
+    def get_color(self, obj):
+        color = obj.color
+        serializer = ColorSerializer(color, many=True)
+        return serializer.data

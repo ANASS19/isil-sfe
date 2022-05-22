@@ -76,8 +76,16 @@ def getServices(request):
 
 @api_view(['GET'])
 def getTopProducts(request):
-    products = Product.objects.all().values()
+    products = Product.objects.all()
+    print(products)
     serializer = ProductSerializer(products, many=True)
+    return Response(serializer.data)
+
+
+@api_view(['GET'])
+def getTopCategory(request):
+    category = Category.objects.all()
+    serializer = CategorySerializer(category, many=True)
     return Response(serializer.data)
 
 

@@ -61,81 +61,67 @@ class Serviceapi(models.Model):
 #     pass
 
 
-# class Category(models.Model):
-#     x=[
-#         ('T-chirt','T-chirt'),
-#         ('Hodie','Hodie'),
-#         ('gacket','gacket')
+class Category(models.Model):
+    x=[
+        ('T-chirt','T-chirt'),
+        ('Hodie','Hodie'),
+        ('gacket','gacket')
 
-#     ]
-#     name = models.CharField(max_length=50,choices=x)
+    ]
+    name = models.CharField(max_length=50,choices=x)
   
-#     # @staticmethod
-#     # def get_all_categories():
-#     #     return Category.objects.all()
+    # @staticmethod
+    # def get_all_categories():
+    #     return Category.objects.all()
   
-#     def __str__(self):
-#         return self.name
+    def __str__(self):
+        return self.name
 
 
-# class Color(models.Model):
-#     c=[
-#         ('black','black'),
-#         ('white','white')
-#     ]
-#     color=models.CharField(max_length=200,choices=c)
-#     def __str__(self):
-#         return str(self.color)
+class Color(models.Model):
+    c=[
+        ('black','black'),
+        ('white','white')
+    ]
+    color=models.CharField(max_length=200,choices=c)
+    def __str__(self):
+        return str(self.color)
 
-# class Size(models.Model):
-#     s=[
-#         ('S','S'),
-#         ('M','M'),
-#         ('L','L'),
-#         ('XL','XL'),
-#     ]
-#     size=models.CharField(max_length=200,choices=s)
-#     def __str__(self):
-#         return str(self.size)
-
-
+class Size(models.Model):
+    s=[
+        ('S','S'),
+        ('M','M'),
+        ('L','L'),
+        ('XL','XL'),
+    ]
+    size=models.CharField(max_length=200,choices=s)
+    def __str__(self):
+        return str(self.size)
 
 
 
-# class Product(models.Model):
-#     c=[
-#         ('black','black'),
-#         ('white','white')
-#     ]
+
+
+class Product(models.Model):
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
+    name = models.CharField(max_length=200,null=True,blank=True)
+    image = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
+    brand = models.CharField(max_length=200,null=True,blank=True)
+    category = models.ManyToManyField(Category, related_name='categoryy',  blank=True, null=True)
+    size=models.ManyToManyField(Size, related_name='sizee',  blank=True,null=True)
+    color=models.ManyToManyField(Color , related_name='colorr',  blank=True, null=True)
+    description = models.TextField(null=True,blank=True)
+    rating = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
+    numReviews = models.IntegerField(null=True,blank=True,default=0)
+    price = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
+    countInStock = models.IntegerField(null=True,blank=True,default=0)
+    createdAt = models.DateTimeField(auto_now_add=True,null=True)
+    inStock=models.BooleanField(default=True)
     
-#     s=[
-#         ('S','S'),
-#         ('M','M'),
-#         ('L','L'),
-#         ('XL','XL'),
-#     ]
-#     x=[
-#         ('T-chirt','T-chirt'),
-#         ('Hodie','Hodie'),
-#         ('gacket','gacket')
-
-#     ]
-#     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
-#     name = models.CharField(max_length=200,null=True,blank=True)
-#     image = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
-#     brand = models.CharField(max_length=200,null=True,blank=True)
-#     category = models.ForeignKey(Category, on_delete=models.SET_NULL,  blank=True, null=True)
-#     description = models.TextField(null=True,blank=True)
-#     rating = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
-#     numReviews = models.IntegerField(null=True,blank=True,default=0)
-#     price = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
-#     countInStock = models.IntegerField(null=True,blank=True,default=0)
-#     createdAt = models.DateTimeField(auto_now_add=True,null=True)
-#     inStock=models.BooleanField(default=True)
-#     size=models.ForeignKey(Size, on_delete=models.SET_NULL,  blank=True, max_length=50,null=True,choices=s)
-#     color=models.ForeignKey(Color ,on_delete=models.SET_NULL,max_length=50,  blank=True, null=True,choices=c)
-#     # size=models.CharField(max_length=200,null=True,blank=True,choices=s)
-#     # color=models.CharField(max_length=200,null=True,blank=True,choices=c)
+    
+    
+    # size=models.CharField(max_length=200,null=True,blank=True,choices=s)
+    # color=models.CharField(max_length=200,null=True,blank=True,choices=c)
     
 
     def __str__(self):
@@ -221,3 +207,11 @@ class Serviceapi(models.Model):
 #     @staticmethod
 #     def get_orders_by_customer(customer_id):
 #         return Order.objects.filter(customer=customer_id).order_by('-date')
+
+
+
+
+
+
+
+
