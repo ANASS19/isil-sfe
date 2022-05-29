@@ -9,12 +9,16 @@ urlpatterns = [
     path('users/register',views.registerUser,name='register'),
     path('users/profile/',views.getUserProfile,name='users-profile'),
     path('users/',views.getUsers,name='users'),
-    path('Category/',views.getTopCategory,name='Category '),
-    path('Services/',views.getServices,name='Services '),
+    # path('Category/',views.getTopCategory,name='Category '),
+    path('Services/',views.Serviceview,name='Services'),
     path('Products/',views.getTopProducts,name='Products '),
     
+    path('newsliter/',views.newsliter,name='newsliter '),
+    path('contact/',views.contact,name='contact '),
+    path('designs/',views.Designsview,name='designs'),
+
     path('Product/<str:pk>/',views.getProduct,name='Product '),
-    path('Product/Category/<str:pk>/',views.getProductByCategory,name='ProductCategor '),
+    path('Product/Category/<str:c>/',views.getProductByCategory,name='ProductCategor '),
     
     
 ]

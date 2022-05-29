@@ -42,19 +42,6 @@ class UserSerializerWithToken(UserSerializer):
         token = RefreshToken.for_user(obj)
         return str(token.access_token)
 
-
-
-
-
-
-
-
-class CategorySerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Category
-        fields = '__all__'
-
-
 class SizeSerializer(serializers.ModelSerializer):
     class Meta:
         model = Size
@@ -64,10 +51,6 @@ class ColorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Color
         fields = '__all__'
-
-
-
-
 
     # def get_sizee(self, obj):
     #     sizee= obj.sizee_set.all()
@@ -80,7 +63,6 @@ class ProductSerializer(serializers.ModelSerializer):
     
     user = serializers.SerializerMethodField(read_only=True)
     size = serializers.SerializerMethodField(read_only=True)
-    category = serializers.SerializerMethodField(read_only=True)
     color = serializers.SerializerMethodField(read_only=True)
     
     class Meta:
@@ -93,10 +75,7 @@ class ProductSerializer(serializers.ModelSerializer):
         return serializer.data
 
     
-    def get_category(self, obj):
-        category = obj.category
-        serializer = CategorySerializer(category, many=True)
-        return serializer.data
+    
     
     def get_size(self, obj):
         size = obj.size
@@ -106,3 +85,42 @@ class ProductSerializer(serializers.ModelSerializer):
         color = obj.color
         serializer = ColorSerializer(color, many=True)
         return serializer.data
+
+
+class NewsliterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Newsliter
+        fields = '__all__'
+
+
+
+
+
+class   ContactUsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=ContactUs
+        fields = '__all__'
+
+
+
+
+
+
+class DesignsSerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.SerializerMethodField(read_only=True)
+    class Meta:
+        model = Designs
+        fields = '__all__'
+
+    def get_size(self, obj):
+        size = obj.size
+        serializer = SizeSerializer(size, many=True)
+        return serializer.data
+
+
+
+
+class ServiceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Service
+        fields = '__all__'
