@@ -22,7 +22,6 @@ function Navbar() {
     { name: "MON DESIGNE", link: "/mondesign" },
     { name: "SERVICES", link: "/services" },
     { name: "CONTACT", link: "/contact" },
-    { name: "Profile", link: "/Profile" },
   ];
   let [open, setOpen] = useState(false);
 

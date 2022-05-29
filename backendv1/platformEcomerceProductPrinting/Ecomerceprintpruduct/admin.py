@@ -12,10 +12,12 @@ admin.site.register(Designs)
 
 
 
-# admin.site.register(Album)
-# admin.site.register(Track)
-#admin.site.register(Category)
-#admin.site.register(Category)
+admin.site.register(Review)
+admin.site.register(Order)
+admin.site.register(ShippingAddress)
+admin.site.register(OrderItem)
+
+
 #admin.site.register(Category)
 
 
