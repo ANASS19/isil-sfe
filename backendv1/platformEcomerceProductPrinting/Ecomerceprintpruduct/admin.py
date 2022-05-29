@@ -4,11 +4,11 @@ from .models import *
 admin.site.register(Newsliter)
 admin.site.register(ContactUs)
 admin.site.register(About)
-admin.site.register(Serviceapi)
+admin.site.register(Service)
 admin.site.register(Product)
 admin.site.register(Color)
 admin.site.register(Size)
-# admin.site.register(Category)
+admin.site.register(Designs)
 
 
 

@@ -3,7 +3,6 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated,IsAdminUser
 from rest_framework.response import Response
-from .ServiceApi import serviceapi
 from .models import *
 # Create your views here.
 from .serializers import *
@@ -66,9 +65,7 @@ def getUsers(request):
 
 
 
-@api_view(['GET'])
-def getServices(request):
-    return Response(serviceapi)
+
 
 # @api_view(['GET'])
 # def getService(requestn,pk):
@@ -105,8 +102,34 @@ def getProduct(request, pk):
 
 @api_view(['GET'])
 def getProductByCategory(request, c):
-    productcatygory = Product.objects.get(category=c)
+    productcatygory = Product.objects.filter(category=c)
+
+    print('******************',productcatygory)
     serializer = ProductSerializer(productcatygory, many=False)
+    return Response(serializer.data)
+
+
+
+@api_view(['POST'])
+def newsliter(request):
+    serializer=NewsliterSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+
+
+
+
+
+
+
+@api_view(['POST'])
+def contact(request):
+    serializer=ContactUsSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
     return Response(serializer.data)
 
 
@@ -126,3 +149,24 @@ def getProductByCategory(request, c):
 #         '',
 #     ]
 #     return Response(routes)
+
+
+@api_view(['POST'])
+def Designsview(request,*args, **kwargs):
+    serializer=DesignsSerializer(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+    return Response(serializer.data)
+
+
+
+
+
+
+
+
+@api_view(['GET'])
+def Serviceview(request):
+    service = Service.objects.all()
+    serializer = ServiceSerializer(service, many=True)
+    return Response(serializer.data)

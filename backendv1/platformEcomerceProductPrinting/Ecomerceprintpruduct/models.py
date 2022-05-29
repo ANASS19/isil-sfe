@@ -12,24 +12,10 @@ from django.contrib.auth.models import User
 class Panier(models.Model):
     pass
 
-class Category(models.Model):
-    x=[
-        ('T-chirt','T-chirt'),
-        ('Hodie','Hodie'),
-        ('gacket','gacket')
-
-    ]
-    name = models.CharField(max_length=50,choices=x)
-  
-    # @staticmethod
-    # def get_all_categories():
-    #     return Category.objects.all()
-  
-    def __str__(self):
-        return self.name
 
 class Slides(models.Model):
     pass
+
 
 class Newsliter(models.Model):
     email=models.EmailField()
@@ -37,10 +23,15 @@ class Newsliter(models.Model):
     def __str__(self):
         return str(self.email)
 
+
 class ContactUs(models.Model):
     name=models.CharField(max_length=50)
     email=models.EmailField()
     message=models.TextField(max_length=255)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.name)
 
 class About(models.Model):
     email=models.EmailField()
@@ -49,7 +40,7 @@ class About(models.Model):
     desription=models.TextField(max_length=255)
 
 
-class Serviceapi(models.Model):
+class Service(models.Model):
     logo=models.CharField(max_length=255)
     title=models.CharField(max_length=255)
     info=models.TextField(max_length=255)
@@ -132,6 +123,56 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name +" | "+self.brand +" | " + str(self.price)
+
+
+
+
+
+def upload_path(instance, filname):
+    return '/'.join(['covers', str(instance.title), filname])
+
+class Designs(models.Model):
+    ca=[
+        ('T-chirt','T-chirt'),
+        ('Hodie','Hodie'),
+        ('Sweat','Sweat'),
+        ('vetement de travail','vetement de travail')
+    ]
+    price = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
+    quantite=models.IntegerField(null=True,blank=True,default=0)
+    category = models.CharField(max_length=200,null=True,blank=True,choices=ca)
+    size=models.ManyToManyField(Size, related_name='sizeee',  blank=True,null=True)
+    color=models.CharField(max_length=50,null=True,blank=True)
+    designs = models.ImageField(null=True,blank = True,upload_to="upload_path")
+    ispayed=models.BooleanField(default=False)
+    accepeted=models.BooleanField(default=False)
+    finished=models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.color +" | " + str(self.price)
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # class ShippingAddress(models.Model):
 #     order = models.OneToOneField(Order,on_delete=models.CASCADE,null=True,blank=True)
