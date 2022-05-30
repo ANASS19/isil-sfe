@@ -92,7 +92,7 @@ class Product(models.Model):
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200,null=True,blank=True)
-    image = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
+    designsmodel = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
     brand = models.CharField(max_length=200,null=True,blank=True)
     category = models.CharField(max_length=200,null=True,blank=True,choices=ca)
     size=models.ManyToManyField(Size, related_name='sizee',  blank=True,null=True)
@@ -119,6 +119,7 @@ class Designs(models.Model):
         ('Sweat','Sweat'),
         ('pulls','pulls')
     ]
+    user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     price = models.DecimalField(max_digits=12,decimal_places=2,null=True,blank=True)
     quantite=models.IntegerField(null=True,blank=True,default=0)
     category = models.CharField(max_length=200,null=True,blank=True,choices=ca)
@@ -166,6 +167,8 @@ class Order(models.Model):
     @staticmethod
     def get_orders_by_customer(customer_id):
         return Order.objects.filter(customer=customer_id).order_by('-date')
+    def __str__(self):
+        return str(self.customer)+" | " + str(self.product)
 
 
 
