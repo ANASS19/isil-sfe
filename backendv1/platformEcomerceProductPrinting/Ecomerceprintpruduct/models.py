@@ -85,8 +85,8 @@ class Size(models.Model):
 
 class Product(models.Model):
     ca=[
-        ('T-chirt','T-chirt'),
-        ('Hodie','Hodie'),
+        ('T-shirt','T-shirt'),
+        ('Sweat','Sweat'),
         ('pulls','pulls')
     ]
 
@@ -114,8 +114,7 @@ def upload_path(instance, filname):
 
 class Designs(models.Model):
     ca=[
-        ('T-chirt','T-chirt'),
-        ('Hodie','Hodie'),
+        ('T-shirt','T-shirt'),
         ('Sweat','Sweat'),
         ('pulls','pulls')
     ]
