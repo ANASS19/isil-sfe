@@ -92,7 +92,7 @@ class Product(models.Model):
 
     user = models.ForeignKey(User,on_delete=models.SET_NULL,null=True)
     name = models.CharField(max_length=200,null=True,blank=True)
-    designsmodel = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
+    image = models.ImageField(null=True,blank = True,default = "/image/logotab3lia.png",upload_to="image/")
     brand = models.CharField(max_length=200,null=True,blank=True)
     category = models.CharField(max_length=200,null=True,blank=True,choices=ca)
     size=models.ManyToManyField(Size, related_name='sizee',  blank=True,null=True)
