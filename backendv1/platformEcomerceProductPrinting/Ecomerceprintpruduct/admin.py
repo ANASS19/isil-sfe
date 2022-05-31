@@ -9,9 +9,10 @@ from .models import *
 class ProductAdmin(admin.ModelAdmin):
     list_display=['user','name','category','inStock','price','countInStock']
     list_display_links=['name','user']
-    search_fields=['user','name','category','inStock','price','countInStock']
+    search_fields=['name','category']
     list_editable=['category','inStock','price','countInStock']
     list_filter=['category','price']
+    
 
 class DesignsAdmin(admin.ModelAdmin):
     list_display=['user','category','price','color']

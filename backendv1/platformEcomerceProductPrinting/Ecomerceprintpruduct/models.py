@@ -106,6 +106,7 @@ class Product(models.Model):
     inStock=models.BooleanField(default=True)
     uplodedebydesigner=models.BooleanField(default=True)
 
+
     def __str__(self):
         return self.name +" | "+self.brand +" | " + str(self.price)
 

@@ -73,10 +73,6 @@ class ProductSerializer(serializers.ModelSerializer):
         user = obj.user
         serializer = UserSerializer(user, many=False)
         return serializer.data
-
-    
-    
-    
     def get_size(self, obj):
         size = obj.size
         serializer = SizeSerializer(size, many=True)
@@ -96,7 +92,7 @@ class NewsliterSerializer(serializers.ModelSerializer):
 
 
 
-class   ContactUsSerializer(serializers.ModelSerializer):
+class ContactUsSerializer(serializers.ModelSerializer):
     class Meta:
         model=ContactUs
         fields = '__all__'
@@ -106,16 +102,16 @@ class   ContactUsSerializer(serializers.ModelSerializer):
 
 
 
-class DesignsSerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.SerializerMethodField(read_only=True)
-    class Meta:
-        model = Designs
-        fields = '__all__'
+# class DesignsSerializer(serializers.HyperlinkedModelSerializer):
+#     user = serializers.SerializerMethodField(read_only=True)
+#     class Meta:
+#         model = Designs
+#         fields = '__all__'
 
-    def get_size(self, obj):
-        size = obj.size
-        serializer = SizeSerializer(size, many=True)
-        return serializer.data
+#     def get_size(self, obj):
+#         size = obj.size
+#         serializer = SizeSerializer(size, many=True)
+#         return serializer.data
 
 
 

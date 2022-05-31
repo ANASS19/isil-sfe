@@ -40,7 +40,7 @@ const Products = ({ cat, filters, sort }) => {
         ? FilterProduct.map((product) => (
             <Product item={product} key={product.id} />
           ))
-        : ProductData.slice(0, 8).map((item) => (
+        : ProductData.slice(0, 1000).map((item) => (
             <Product item={item} key={item.id} />
           ))}
     </div>
